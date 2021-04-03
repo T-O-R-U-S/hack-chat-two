@@ -31,7 +31,8 @@ export default (req, res) => {
   // Check for pre-existing username.
   if (accounts.find((user) => user.username == req.body.username))
     return res.status(400).send("Pre-existing username!");
-
+  if(req.body.username == "SYSTEM") 
+    return res.status(400).send("Nice try lol.")
   
   
   // Sets up a 64-character long string to be used as the token. 64^65 = impossible to bruteforce... in the event of a hack though :/

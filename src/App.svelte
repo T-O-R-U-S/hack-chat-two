@@ -70,13 +70,51 @@
       },
     ];
   }
+
+  const commands = [
+    {
+      name: "signup",
+      function: signUp(command)
+    }
+  ]
+
   function postMessage() {
     let messageBox = document.getElementById("messageBox");
+
+    if(messageBox.value.startsWith("\\")) {
+      let command = commands.find(cmd => messageBox.value.substring(1) == cmd.name);
+      if(!command) messages = [...messages, {
+        style: "color: red",
+        content: "Not a command!",
+        user: "SYSTEM"
+      }]
+      command.function();
+    }
+
     postData({
       "content": messageBox.value,
       "token": getCookie("login"),
     });
     messageBox.value = null;
+  }
+  function signUp(command){
+    // Default options are marked with *
+    fetch("http://localhost:3000/api/account", {
+      method: "POST",
+      headers: {
+        cookie:
+          "login=-4NHic%2BjApI8jGbW%3DE(1iR8En)nbAf5(-ERUSDGFW%24JGhkPudkZP4K*T)55rP3BK",
+        "Content-Type": "application/json",
+      },
+      body:
+        JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 </script>
 
