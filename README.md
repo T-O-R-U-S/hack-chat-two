@@ -1,5 +1,5 @@
 # Hack Chat Two 🖥️
-The first HackChat (discontinued) has an awful codebase which makes me and YOU feel awful so I have decided to redo it with Svelte and Socket.io!
+The first HackChat (discontinued) has an awful codebase which makes me and YOU feel awful so I have decided to redo it with Svelte and Pusher!
 
 ## Future plans?
 - Account system
