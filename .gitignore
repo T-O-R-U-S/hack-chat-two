@@ -6,3 +6,6 @@
 .env.build
 
 .vercel
+
+/api/accountdata.json
+.jshintrc

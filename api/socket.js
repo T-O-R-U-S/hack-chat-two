@@ -1,23 +1,42 @@
+let Pusher = require("pusher");
+
+let accounts = require("./accountdata.json");
+
+let pusher = new Pusher({
+  appId: "1182518",
+  key: "a992f09a2d49b2381347",
+  secret: "08e6f586507e75889216",
+  cluster: "ap2",
+  useTLS: true,
+});
+
+let commands = [
+
+]
+
+let commandRegex = new RegExp(/\\|\//)
+
 export default async (req, res) => {
-  let Pusher = require('pusher');
+  if(req.body.content?.startsWith("\\")) {
+    console.log("Command detected!")
+  }
 
 
-  console.log(req.query)
 
-  res
-  .status(200)
-  .send("A-ok!")
+  let messageObj = {
+    user: "Anonymous",
+    content: req.body.content
+  };
 
-  let pusher = new Pusher({
-    appId: "1182518",
-    key: "a992f09a2d49b2381347",
-    secret: "08e6f586507e75889216",
-    cluster: "ap2",
-    useTLS: true
-  })
+  if(req.body?.token?.length == 64) 
+    messageObj.user = accounts.find(account => account.token == req.body.token).username;
+  
 
-  pusher.trigger('message-channel', 'message', {
-    user: "jonas",
-    content: "average"
-  })
+  if (req.body?.reqType == "shout") 
+    if (!req.query.user?.coins > 50) return;
+  
+
+  await pusher.trigger("message-channel", "message", messageObj);
+
+  return;
 };
