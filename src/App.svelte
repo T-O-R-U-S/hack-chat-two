@@ -1,6 +1,6 @@
 <script>
   import "https://js.pusher.com/5.0/pusher.min.js";
-  const Cookies = require("https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js");
+  import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.mjs';
 
   const privateChannelCode = Math.random().toString(18).substring(2);
 
