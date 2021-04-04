@@ -1,5 +1,6 @@
 <script>
   import "https://js.pusher.com/5.0/pusher.min.js";
+  import "https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js";
 
   const privateChannelCode = Math.random().toString(18).substring(2);
 
