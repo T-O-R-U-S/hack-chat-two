@@ -1,48 +1,121 @@
 <script>
-  import { onMount } from "svelte";
-  export let date;
+  console.log(document.cookie);
+  document.cookie = "myCookie='coolCookie'; HttpOnly";
+  import "https://js.pusher.com/5.0/pusher.min.js";
+  import Cookies from 'js-cookie';
 
-  onMount(async () => {
-    const res = await fetch("/api/date");
-    const newDate = await res.text();
-    date = newDate;
+  const privateChannelCode = Math.random().toString(18).substring(2);
+
+  let localUsername = Cookies.get("uname");
+
+  let messages = [
+    {
+      user: "SYSTEM",
+      content: "use /uname <USERNAME> to get a username!",
+      style: "color: yellow",
+    },
+  ];
+
+  Pusher.logToConsole = true;
+
+  let pusher = new Pusher("a992f09a2d49b2381347", {
+    cluster: "ap2",
   });
+
+  const channel = pusher.subscribe("message-channel");
+
+  channel.bind("message", function (data) {
+    messages = [
+      ...messages,
+      {
+        user: data.user,
+        content: data.content,
+        style: data.style,
+      },
+    ];
+  });
+
+  // Example POST method implementation:
+  function postData(data = null) {
+    // Default options are marked with *
+    fetch("http://127.0.0.1:3000/api/socket", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log(response.body);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  const commands = [
+    {
+      name:"uname",
+      function: (commandData) => {localUsername = commandData[0]; Cookies.set("login", commandData[0])}
+    }
+  ];
+
+  function postMessage() {
+    // Input prompt to send messages to chat
+    let messageBox = document.getElementById("messageBox").value;
+    // Guard clause to stop empty messages
+    if (!messageBox)
+      return (messages = [
+        ...messages,
+        {
+          style: "color: blue",
+          user: "SYSTEM",
+          content: "You cannot send a blank message.",
+        },
+      ]);
+
+    // Check for command
+    if (messageBox.startsWith("/")) {
+      // Format messageBox's value into an array for use with commands
+      let msgBoxFmt = messageBox.substring(1).split(" ");
+
+      let toFind = msgBoxFmt.shift();
+
+      let command = commands.find((cmd) => toFind == cmd.name);
+      if (!command)
+        messages = [
+          ...messages,
+          {
+            style: "color: red",
+            content: "Not a command!",
+            user: "SYSTEM",
+          },
+        ];
+      command.function(msgBoxFmt);
+      return;
+    }
+
+    postData({
+      content: messageBox,
+      username: localUsername,
+    });
+    document.getElementById("messageBox").value = null;
+  }
 </script>
 
 <main>
-  <h1>Svelte + Node.js API</h1>
-  <h2>
-    Deployed with
-    <a href="https://vercel.com/docs" target="_blank" rel="noreferrer noopener">
-      Vercel
-    </a>
-    !
-  </h2>
-  <p>
-    <a
-      href="https://github.com/vercel/vercel/tree/master/examples/svelte"
-      target="_blank"
-      rel="noreferrer noopener">
-      This project
-    </a>
-    is a
-    <a href="https://svelte.dev/">Svelte</a>
-    app with three directories,
-    <code>/public</code>
-    for static assets,
-    <code>/src</code>
-    for components and content, and
-    <code>/api</code>
-    which contains a serverless
-    <a href="https://nodejs.org/en/">Node.js</a>
-    function. See
-    <a href="/api/date">
-      <code>api/date</code>
-      for the Date API with Node.js
-    </a>
-    .
-  </p>
-  <br />
-  <h2>The date according to Node.js is:</h2>
-  <p>{date ? date : 'Loading date...'}</p>
+  <ol>
+    <!--Loop through array -- add each message as an item-->
+    {#each messages as message}
+      <li>
+        <p style={message.style}>
+          {message.user} says :: {message.content}
+        </p>
+      </li>
+    {/each}
+  </ol>
+  <!--Input prompt to send messages to chat-->
+  <input type="text" id="messageBox" /><button on:click={postMessage}
+    >Send</button
+  >
 </main>
