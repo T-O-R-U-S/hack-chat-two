@@ -1,8 +1,5 @@
 <script>
-  console.log(document.cookie);
-  document.cookie = "myCookie='coolCookie'; HttpOnly";
   import "https://js.pusher.com/5.0/pusher.min.js";
-  import Cookies from 'js-cookie';
 
   const privateChannelCode = Math.random().toString(18).substring(2);
 
