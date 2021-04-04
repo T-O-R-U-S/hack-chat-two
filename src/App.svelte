@@ -1,6 +1,4 @@
 <script>
-  console.log(document.cookie);
-  document.cookie = "myCookie='coolCookie'; HttpOnly";
   import "https://js.pusher.com/5.0/pusher.min.js";
   import Cookies from 'js-cookie';
 
@@ -56,7 +54,7 @@
   const commands = [
     {
       name:"uname",
-      function: (commandData) => {localUsername = commandData[0]; Cookies.set("login", commandData[0])}
+      function: (commandData) => {localUsername = commandData[0]; Cookies.set("uname", commandData[0], {SameSite:"None",secure:true})}
     }
   ];
 
