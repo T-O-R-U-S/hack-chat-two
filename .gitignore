@@ -7,6 +7,6 @@
 
 .vercel
 
-/api/accountdata.json
+/api/*.json
 .jshintrc
 package-lock.json

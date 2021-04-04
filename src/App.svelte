@@ -16,7 +16,7 @@
 
   Pusher.logToConsole = true;
 
-  let pusher = new Pusher("a992f09a2d49b2381347", {
+  let pusher = new Pusher("a6ca652978825c96706c", {
     cluster: "ap2",
   });
 

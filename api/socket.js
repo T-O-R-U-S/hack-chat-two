@@ -1,9 +1,12 @@
 let Pusher = require("pusher");
 
+// Only for development. Comment out when pushing to GitHub!
+// const localVercelVars = require("./localenv.json")
+
 let pusher = new Pusher({
   appId: "1182518",
-  key: process.env.pusher_key,
-  secret: process.env.pusher_secret,
+  key: "a6ca652978825c96706c",
+  secret: process.env.pusher_key,
   cluster: "ap2",
   useTLS: true,
 });
