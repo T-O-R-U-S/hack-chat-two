@@ -47,9 +47,9 @@ export default (req, res) => {
   console.log("updating...");
   
 
-  res.setHeader("Set-Cookie", [`login=${userToken}; HttpOnly`]);
+  res.setHeader("Set-Cookie", [`login=${userToken}, HttpOnly`]);
 
-  return res.status(200).send({
+  return res.status(200).json({
     token: userToken,
   });
 };

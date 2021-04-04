@@ -410,6 +410,11 @@
     "merge-stream" "^2.0.0"
     "supports-color" "^7.0.0"
 
+"js-cookie@^2.2.1":
+  "integrity" "sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ=="
+  "resolved" "https://registry.npmjs.org/js-cookie/-/js-cookie-2.2.1.tgz"
+  "version" "2.2.1"
+
 "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
   "resolved" "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -592,12 +597,12 @@
   dependencies:
     "estree-walker" "^0.6.1"
 
-"rollup@^1.20.0||^2.0.0", "rollup@^2.0.0", "rollup@^2.3.4", "rollup@>=1.19.2":
-  "integrity" "sha512-uY4O/IoL9oNW8MMcbA5hcOaz6tZTMIh7qJHx/tzIJm+n1wLoY38BLn6fuy7DhR57oNFLMbDQtDeJoFURt5933w=="
-  "resolved" "https://registry.npmjs.org/rollup/-/rollup-2.33.1.tgz"
-  "version" "2.33.1"
+"rollup@^1.20.0||^2.0.0", "rollup@^2.0.0", "rollup@^2.3.4", "rollup@^2.44.0", "rollup@>=1.19.2":
+  "integrity" "sha512-rGSF4pLwvuaH/x4nAS+zP6UNn5YUDWf/TeEU5IoXSZKBbKRNTCI3qMnYXKZgrC0D2KzS2baiOZt1OlqhMu5rnQ=="
+  "resolved" "https://registry.npmjs.org/rollup/-/rollup-2.44.0.tgz"
+  "version" "2.44.0"
   optionalDependencies:
-    "fsevents" "~2.1.2"
+    "fsevents" "~2.3.1"
 
 "sade@^1.6.0":
   "integrity" "sha512-y5yauMD93rX840MwUJr7C1ysLFBgMspsdTo4UVrDg3fXDvtwOyIqykhVAAm6fk/3au77773itJStObgK+LKaiA=="

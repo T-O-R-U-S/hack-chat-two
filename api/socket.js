@@ -10,26 +10,14 @@ let pusher = new Pusher({
   useTLS: true,
 });
 
-let commands = [
-
-]
-
-let commandRegex = new RegExp(/\\|\//)
-
 export default async (req, res) => {
-  if(req.body.content?.startsWith("\\")) {
-    console.log("Command detected!")
-  }
-
-
-
   let messageObj = {
     user: "Anonymous",
     content: req.body.content
   };
 
-  if(req.body?.token?.length == 64) 
-    messageObj.user = accounts.find(account => account.token == req.body.token).username;
+  if(req.body?.username) 
+    messageObj.user = req.body.username;
   
 
   if (req.body?.reqType == "shout") 
