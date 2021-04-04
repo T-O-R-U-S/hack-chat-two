@@ -1,7 +1,5 @@
 let Pusher = require("pusher");
 
-let accounts = require("./accountdata.json");
-
 let pusher = new Pusher({
   appId: "1182518",
   key: "a992f09a2d49b2381347",
