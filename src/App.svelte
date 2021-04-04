@@ -38,7 +38,7 @@
   // Example POST method implementation:
   function postData(data = null) {
     // Default options are marked with *
-    fetch("http://127.0.0.1:3000/api/socket", {
+    fetch("/api/socket", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
