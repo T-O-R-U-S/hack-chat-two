@@ -23,5 +23,7 @@ export default async (req, res) => {
 
   await pusher.trigger("message-channel", "message", messageObj);
 
-  return;
+
+  // FIXME: Whenever a status IS returned, nothing gets written to Pusher. Why??
+  return res.status(200);
 };
