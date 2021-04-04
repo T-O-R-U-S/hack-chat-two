@@ -1,9 +1,11 @@
 let Pusher = require("pusher");
 
+// I got the keys mixed up so pusher_key == pusher secret. Too lazy to fix.
+
 let pusher = new Pusher({
   appId: "1182518",
-  key: process.env.pusher_key,
-  secret: process.env.pusher_secret,
+  key: process.env.pusher_secret,
+  secret: process.env.pusher_key,
   cluster: "ap2",
   useTLS: true,
 });
