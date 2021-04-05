@@ -90,7 +90,7 @@
           },
         ];
       command.function(msgBoxFmt);
-      return;
+      return document.getElementById("messageBox").value = null;
     }
 
     postData({
