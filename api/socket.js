@@ -19,7 +19,7 @@ export default async (req, res) => {
 
   if(req.body?.username) 
     if(req.body.username.toUpperCase() !== "SYSTEM")
-      return messageObj.user = req.body.username;
+      messageObj.user = req.body.username;
     else
       messageObj.user = "Absolute clown";
   
