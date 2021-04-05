@@ -81,7 +81,7 @@
 
       let command = commands.find((cmd) => toFind == cmd.name);
       if (!command)
-        messages = [
+        return messages = [
           ...messages,
           {
             style: "color: red",

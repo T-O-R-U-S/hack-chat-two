@@ -1,6 +1,6 @@
 let Pusher = require("pusher");
 
-// Only for development. Comment out when pushing to GitHub!
+// ! Only for development. Comment out when pushing to GitHub!
 // const localVercelVars = require("./localenv.json")
 
 let pusher = new Pusher({
